@@ -54,6 +54,7 @@ function ce {
 
     if [ ! -e $history_dir ]; then
         mkdir $history_dir
+        touch $history_file
     fi
 
     local to_dir="$(pwd)"
@@ -96,6 +97,7 @@ function vin {
 
     if [ ! -e $history_dir ]; then
         mkdir $history_dir
+        touch $history_file
     fi
 
     local target_file=""

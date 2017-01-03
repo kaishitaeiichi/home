@@ -1,18 +1,30 @@
+#!/bin/bash
+
+h=$HOME
+tmp=$h/home_git_tmp
+
+find $tmp | grep -v -P '^'"$tmp"'$' | xargs -I{} mv -v -n {} $h
+
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
+sh /tmp/installer.sh $h/.vim
+
+cat <<EOF > $h/.vimrc
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/home/eiichi/.vim/repos/github.com/Shougo/dein.vim
+set runtimepath+=$h/.vim/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/eiichi/.vim')
-  call dein#begin('/home/eiichi/.vim')
+if dein#load_state('$h/.vim')
+  call dein#begin('$h/.vim')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/home/eiichi/.vim/repos/github.com/Shougo/dein.vim')
+  call dein#add('$h/.vim/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
@@ -37,10 +49,16 @@ endif
 
 "End dein Scripts-------------------------
 
+EOF
+
+cat <<EOF >> $h/.vimrc
 
 set number
 set tabstop=4
 set expandtab
 set shiftwidth=4
 set smartindent
+
+EOF
+
 
