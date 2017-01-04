@@ -1,9 +1,21 @@
 #!/bin/bash
 
 h=$HOME
-tmp=$h/home_git_tmp
+ohters=()
 
-find $tmp | grep -v -P '^'"$tmp"'$' | xargs -I{} mv -v -n {} $h
+while [ $# -gt 0 ]; do
+    case "$1" in
+        "-h") h="$2"; shift 2;; 
+        *) others[$i]=$1; i=$((i + 1)); shift 1;; 
+    esac 
+done 
+
+# in advance,
+# git clone git@github.com:kaishitaeiichi/home.git ~/home_git_tmp
+#
+#tmp=$h/home_git_tmp
+#
+#find $tmp | grep -v -P '^'"$tmp"'$' | xargs -I{} mv -v -n {} $h
 
 
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh

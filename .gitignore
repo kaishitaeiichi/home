@@ -1,4 +1,8 @@
 /**
 !/.vimrc
-!/bin/**
 !/.git*
+# git add -f bin/*
+!/bin/**
+# git add -f package_list/*
+!/package_list/**
+
